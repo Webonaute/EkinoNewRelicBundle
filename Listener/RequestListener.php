@@ -112,6 +112,18 @@ class RequestListener implements EventSubscriberInterface
      */
     private function isEventValid(GetResponseEvent $event): bool
     {
-        return HttpKernelInterface::MASTER_REQUEST === $event->getRequestType();
+        return HttpKernelInterface::MASTER_REQUEST === $event->getRequestType() && false === $this->isInternalRequest($event->getRequest());
+    }
+    
+    /**
+     * Checks if passed request object is to be considered internal (e.g. for user hash lookup).
+     *
+     * @param Request $request
+     *
+     * @return bool
+     */
+    private function isInternalRequest(Request $request): bool
+    {
+        return true === $request->attributes->get('internalRequest', false);
     }
 }
