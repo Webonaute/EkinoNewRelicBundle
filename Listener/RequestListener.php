@@ -53,7 +53,7 @@ class RequestListener implements EventSubscriberInterface
             KernelEvents::REQUEST => [
                  ['setApplicationName', 255],
                  ['setIgnoreTransaction', 31],
-                 ['setTransactionName', -10],
+                 ['setTransactionName', 8],
             ],
         ];
     }
